@@ -10,7 +10,8 @@ import {
   SiMongodb,
   SiPostgresql,
   SiCplusplus,
-  SiJavascript
+  SiJavascript,
+  SiChatbot
 } from 'react-icons/si';
 
 const Hero = () => (
@@ -34,6 +35,7 @@ const Hero = () => (
       <TechItem icon={SiMongodb} name="MongoDB" />
       <TechItem icon={SiPostgresql} name="PostgreSQL" />
       <TechItem icon={SiNodedotjs} name="Node.js" />
+      <TechItem icon={SiChatbot} name="Gen Ai" />
       <TechItem icon={SiReact} name="React" />
       <TechItem icon={SiTailwindcss} name="Tailwind CSS" />
       <TechItem icon={SiVercel} name="Vercel" />  
