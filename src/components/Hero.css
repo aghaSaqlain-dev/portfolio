@@ -1,0 +1,151 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-welcome {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.hero-welcome .highlight {
+  color: var(--primary-color);
+  font-weight: 400;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero-name-first {
+  color: #ffffff;
+  display: block;
+}
+
+.hero-name-last {
+  color: var(--primary-color);
+  display: block;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.hero-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  opacity: 0.7;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .8rem;
+    transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.tech-icon {
+    width: 36px;
+    height: 36px;
+    color: #888;
+    transition: all 0.3s ease;
+}
+
+.tech-item:hover .tech-icon {
+    color: #ffffff;
+}
+
+.tech-item span {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-button {
+  min-width: 190px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 12px 24px;
+  background: transparent;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.hero-button.primary {
+  border: 2px solid var(--border-color);
+  border-color: var(--button-border-color);
+}
+
+.hero-button.secondary {
+ border: 1px solid #41377a;; 
+box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.hero-button.hero-button.primary:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+.hero-button.hero-button.secondary:hover {
+  border-color: var(--border-color);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Hero responsive design */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1rem;
+  }
+  
+  .hero-tech-stack {
+    gap: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-button {
+    width: 200px;
+  }
+}
