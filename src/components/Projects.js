@@ -1,4 +1,6 @@
+import React, { useEffect } from 'react';
 import './Projects.css';
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
 
 const projects = [
   {
@@ -51,13 +53,29 @@ const projects = [
   },
 ];
 
-const Projects = () => (
-  <section className="projects" id="projects">
-    <div className="container">
-      <h2 className="section-title">Projects & Research Work</h2>
-      <div className="project-grid">
-        {projects.map((project, i) => (
-          <div key={i} className="project-card">
+const Projects = () => {
+  const [sectionRef, sectionVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [visibleProjects, startProjectAnimation] = useStaggeredAnimation(projects.length, 200);
+
+  useEffect(() => {
+    if (sectionVisible) {
+      startProjectAnimation();
+    }
+  }, [sectionVisible, startProjectAnimation]);
+
+  return (
+    <section className={`projects section-animated ${sectionVisible ? 'visible' : ''}`} id="projects" ref={sectionRef}>
+      <div className="container">
+        <h2 className={`section-title fade-in-up ${sectionVisible ? 'visible' : ''}`}>
+          Projects & Research Work
+        </h2>
+        <div className="project-grid">
+          {projects.map((project, i) => (
+            <div 
+              key={i} 
+              className={`project-card stagger-item ${visibleProjects.has(i) ? 'visible' : ''}`}
+              style={{ transitionDelay: `${i * 0.1}s` }}
+            >
             <div className="project-header">
               <h3 className="project-title">{project.title}</h3>
               {project.github && (
@@ -98,6 +116,7 @@ const Projects = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Projects;

@@ -1,4 +1,6 @@
+import React, { useEffect } from 'react';
 import './Contact.css';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const contactInfo = {
   email: "aghasaqlain.dev@gmail.com",
@@ -8,21 +10,24 @@ const contactInfo = {
   location: "Karachi, Pakistan"
 };
 
-const Contact = () => (
-  <section className="contact" id="contact">
-    <div className="container">
-      <h2 className="section-title">Get In Touch</h2>
-      
-      <div className="contact-content">
-        <div className="contact-info">
-          <h3 className="contact-subtitle">Let's Connect</h3>
-          <p className="contact-description">
-            I'm always open to discussing new opportunities, interesting projects, 
-            or just having a chat about technology and innovation. Feel free to reach out!
-          </p>
-          
-          <div className="contact-methods">
-            <a href={`mailto:${contactInfo.email}`} className="contact-method">
+const Contact = () => {
+  const [sectionRef, sectionVisible] = useScrollAnimation({ threshold: 0.1 });
+
+  return (
+    <section className={`contact section-animated ${sectionVisible ? 'visible' : ''}`} id="contact" ref={sectionRef}>
+      <div className="container">
+        <h2 className={`section-title fade-in-up ${sectionVisible ? 'visible' : ''}`}>Get In Touch</h2>
+        
+        <div className="contact-content">
+          <div className={`contact-info fade-in-left ${sectionVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
+            <h3 className="contact-subtitle">Let's Connect</h3>
+            <p className="contact-description">
+              I'm always open to discussing new opportunities, interesting projects, 
+              or just having a chat about technology and innovation. Feel free to reach out!
+            </p>
+            
+            <div className="contact-methods">
+              <a href={`mailto:${contactInfo.email}`} className="contact-method">
               <div className="method-icon">📧</div>
               <div className="method-details">
                 <h4>Email</h4>
@@ -48,7 +53,7 @@ const Contact = () => (
           </div>
         </div>
         
-        <div className="contact-form">
+        <div className={`contact-form fade-in-right ${sectionVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
           <h3 className="form-title">Send a Message</h3>
           <form className="message-form">
             <div className="form-group">
@@ -104,6 +109,7 @@ const Contact = () => (
       </div>
     </footer>
   </section>
-);
+  );
+};
 
 export default Contact;

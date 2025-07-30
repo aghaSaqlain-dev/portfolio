@@ -1,4 +1,6 @@
+import React, { useEffect } from 'react';
 import './Experience.css';
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
 
 const experiences = [
   {
@@ -43,16 +45,30 @@ const leadership = [
   }
 ];
 
-const Experience = () => (
-  <section className="experience" id="experience">
-    <div className="container">
-      <h2 className="section-title">Professional Experience</h2>
-      
-      <div className="experience-section">
-        <h3 className="subsection-title">Work Experience</h3>
-        <div className="experience-grid">
-          {experiences.map((exp, i) => (
-            <div key={i} className="experience-card">
+const Experience = () => {
+  const [sectionRef, sectionVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [visibleExp, startExpAnimation] = useStaggeredAnimation(experiences.length + leadership.length, 150);
+
+  useEffect(() => {
+    if (sectionVisible) {
+      startExpAnimation();
+    }
+  }, [sectionVisible, startExpAnimation]);
+
+  return (
+    <section className={`experience section-animated ${sectionVisible ? 'visible' : ''}`} id="experience" ref={sectionRef}>
+      <div className="container">
+        <h2 className={`section-title fade-in-up ${sectionVisible ? 'visible' : ''}`}>Professional Experience</h2>
+        
+        <div className="experience-section">
+          <h3 className={`subsection-title fade-in-up ${sectionVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>Work Experience</h3>
+          <div className="experience-grid">
+            {experiences.map((exp, i) => (
+              <div 
+                key={i} 
+                className={`experience-card stagger-item ${visibleExp.has(i) ? 'visible' : ''}`}
+                style={{ transitionDelay: `${i * 0.1}s` }}
+              >
               <div className="experience-header">
                 <div className="experience-info">
                   <h4 className="experience-position">{exp.position}</h4>
@@ -85,11 +101,15 @@ const Experience = () => (
         </div>
       </div>
 
-      <div className="experience-section">
-        <h3 className="subsection-title">Leadership & Extracurricular</h3>
-        <div className="leadership-grid">
-          {leadership.map((role, i) => (
-            <div key={i} className="leadership-card">
+        <div className="experience-section">
+          <h3 className={`subsection-title fade-in-up ${sectionVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.4s' }}>Leadership & Extracurricular</h3>
+          <div className="leadership-grid">
+            {leadership.map((role, i) => (
+              <div 
+                key={i} 
+                className={`leadership-card stagger-item ${visibleExp.has(experiences.length + i) ? 'visible' : ''}`}
+                style={{ transitionDelay: `${(experiences.length + i) * 0.1}s` }}
+              >
               <div className="leadership-header">
                 <div className="leadership-info">
                   <h4 className="leadership-title">{role.title}</h4>
@@ -117,6 +137,7 @@ const Experience = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Experience;

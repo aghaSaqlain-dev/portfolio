@@ -1,4 +1,6 @@
+import React, { useEffect } from 'react';
 import './Skills.css';
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
 
 const skillCategories = [
   {
@@ -95,15 +97,25 @@ const education = {
   description: "Comprehensive computer science program focusing on software engineering, algorithms, and modern development practices."
 };
 
-const Skills = () => (
-  <section className="skills" id="skills">
-    <div className="container">
-      <h2 className="section-title">Skills & Education</h2>
-      
-      {/* Education Section */}
-      <div className="education-section">
-        <h3 className="subsection-title">Education</h3>
-        <div className="education-card">
+const Skills = () => {
+  const [sectionRef, sectionVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [visibleSkills, startSkillsAnimation] = useStaggeredAnimation(skillCategories.length + 3, 150);
+
+  useEffect(() => {
+    if (sectionVisible) {
+      startSkillsAnimation();
+    }
+  }, [sectionVisible, startSkillsAnimation]);
+
+  return (
+    <section className={`skills section-animated ${sectionVisible ? 'visible' : ''}`} id="skills" ref={sectionRef}>
+      <div className="container">
+        <h2 className={`section-title fade-in-up ${sectionVisible ? 'visible' : ''}`}>Skills & Education</h2>
+        
+        {/* Education Section */}
+        <div className="education-section">
+          <h3 className={`subsection-title fade-in-up ${sectionVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>Education</h3>
+          <div className={`education-card stagger-item ${visibleSkills.has(0) ? 'visible' : ''}`}>
           <div className="education-header">
             <div className="education-info">
               <h4 className="education-degree">{education.degree}</h4>
@@ -181,6 +193,7 @@ const Skills = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Skills;
