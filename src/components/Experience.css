@@ -1,0 +1,275 @@
+.experience {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(100, 72, 243, 0.05) 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4rem;
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.experience-section {
+  margin-bottom: 4rem;
+}
+
+.experience-section:last-child {
+  margin-bottom: 0;
+}
+
+.subsection-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.subsection-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+  border-radius: 2px;
+}
+
+.experience-grid,
+.leadership-grid {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+.experience-card,
+.leadership-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card::before,
+.leadership-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.experience-card:hover::before,
+.leadership-card:hover::before {
+  transform: scaleX(1);
+}
+
+.experience-card:hover,
+.leadership-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(100, 72, 243, 0.3);
+  box-shadow: 0 15px 30px rgba(100, 72, 243, 0.1);
+}
+
+.experience-header,
+.leadership-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.experience-info,
+.leadership-info {
+  flex: 1;
+}
+
+.experience-position,
+.leadership-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.experience-company,
+.leadership-organization {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin: 0 0 0.75rem 0;
+}
+
+.experience-duration,
+.leadership-duration {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 400;
+  margin: 0;
+}
+
+.experience-icon,
+.leadership-icon {
+  font-size: 2.5rem;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover .experience-icon,
+.leadership-card:hover .leadership-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.experience-description,
+.leadership-description {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.experience-achievements,
+.leadership-achievements {
+  margin-bottom: 2rem;
+}
+
+.experience-achievements h6,
+.leadership-achievements h6 {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.experience-achievements h6::before {
+  content: '🎯';
+  font-size: 1.2rem;
+}
+
+.leadership-achievements h6::before {
+  content: '🏆';
+  font-size: 1.2rem;
+}
+
+.experience-achievements ul,
+.leadership-achievements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.experience-achievements li,
+.leadership-achievements li {
+  color: #bbb;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.experience-achievements li::before,
+.leadership-achievements li::before {
+  content: '▶';
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.8rem;
+}
+
+.experience-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-tag {
+  background: rgba(100, 72, 243, 0.2);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(100, 72, 243, 0.3);
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  background: rgba(100, 72, 243, 0.3);
+  border-color: rgba(100, 72, 243, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .experience {
+    padding: 4rem 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .subsection-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .experience-card,
+  .leadership-card {
+    padding: 2rem;
+  }
+  
+  .experience-header,
+  .leadership-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .experience-icon,
+  .leadership-icon {
+    align-self: flex-end;
+    font-size: 2rem;
+  }
+  
+  .experience-position,
+  .leadership-title {
+    font-size: 1.2rem;
+  }
+}
