@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Hero.css';
 import TechItem from './tech-item';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
