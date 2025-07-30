@@ -11,7 +11,7 @@ const projects = [
       "CUDA GPU parallelization with shared memory optimization",
       "Benchmarked across various embedding and window sizes"
     ],
-    github: "https://github.com/aghaSaqlain-dev/word2vec-cuda",
+    github: "https://github.com/aghaSaqlain-dev/word2vec",
   },
   {
     title: "Scalable AWS Infrastructure with Terraform",
@@ -23,6 +23,7 @@ const projects = [
       "Application Load Balancer with HTTPS and SSL via AWS ACM",
       "Multi-stage Dockerized web apps with BI tools integration"
     ],
+    github: "https://github.com/aghaSaqlain-dev/devops_final_project"
   },
   {
     title: "Online Game Store",
@@ -34,6 +35,7 @@ const projects = [
       "Implemented transactional queries for secure database operations",
       "Optimized database queries for improved performance"
     ],
+    github: "https://github.com/aghaSaqlain-dev/online-game-store-databaseproject"
   },
   {
     title: "Chef's Book Mobile App",
@@ -45,6 +47,7 @@ const projects = [
       "Scalable Node.js (MVC) backend with MongoDB Atlas",
       "Real-time updates and cloud-based storage for 1,000+ recipes"
     ],
+    github: "https://github.com/aghaSaqlain-dev/chefs_book"
   },
 ];
 
