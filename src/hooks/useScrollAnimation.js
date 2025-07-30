@@ -1,14 +1,8 @@
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const useScrollAnimation = (options = {}) => {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-  
-  const observerOptions = useMemo(() => ({
-    threshold: options.threshold || 0.1,
-    rootMargin: options.rootMargin || '0px 0px -50px 0px',
-    ...options
-  }), [options.threshold, options.rootMargin]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,7 +11,11 @@ export const useScrollAnimation = (options = {}) => {
           setIsVisible(true);
         }
       },
-      observerOptions
+      {
+        threshold: options.threshold || 0.1,
+        rootMargin: options.rootMargin || '0px 0px -50px 0px',
+        ...options
+      }
     );
 
     const currentElement = ref.current;
@@ -30,7 +28,8 @@ export const useScrollAnimation = (options = {}) => {
         observer.unobserve(currentElement);
       }
     };
-  }, [observerOptions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return [ref, isVisible];
 };
